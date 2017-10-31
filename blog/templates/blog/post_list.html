@@ -1,51 +1,18 @@
-<!-- <html>
-	<head> 
-		<title> Ola's blog </title>
-	</head>
-	<body>
-		<p> Hi there! </p>
-		<p> It works! </p>
-	</body>
-</html> -->
 
+{% extends 'blog/base.html' %}
 
-<!--<h1>Un'intestazione</h1> - per la tua intestazione più importante
-    <h2>Un sottotitolo</h2> per un titolo di livello inferiore
-    <h3>Un sottotitolo più piccolo</h3> ... e così via, fino a <h6>
-    <em>text</em> enfatizza il tuo testo
-    <strong>text</strong> enfatizza fortemente il tuo testo
-    <br /> va in un'altra riga (puoi mettere qualsiasi cosa dentro br)
-    <a href="https://djangogirls.org">link</a> crea un link
-    <ul><li>primo elemento</li><li>secondo elemento</li></ul> fa una lista, proprio come questa qui!
-    <div></div> definisce una sezione della pagina -->
-
-
-<html>
-	<head>
-		<title>Django Girls blog</title>
-	</head>
-	<body>
-		<div> 
-			<h1><a href="">Django Girls Blog</a></h1>
+{% block content %}
+{% for post in posts %}
+	<div class="post">
+		<div class="date">
+    		{{ post.published_date }}
 		</div>
-
-
-		<div>
-			<p>published: 14.06.2014, 12:14</p>
-			<h2><a href="">My first post</a></h2>
-			<p>Ciao Ciao 1</P>
-		</div>
-
-
-		<div>
-			<p>published: 14.06.2014, 12:14</p>
-			<h2><a href="">My second post</a></h2>
-			<p>Ciao Ciao 2</P>
-		</div>
-	</body>
-</html>
-
-
+		<h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+		<p>{{ post.text|linebreaksbr }}</p>
+	</div>
+{% endfor %}
+{% endblock %}
+        
 
 
 
